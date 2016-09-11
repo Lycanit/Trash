@@ -14,7 +14,9 @@ namespace ConsoleApplication
         public static void ShowMagic()
         {
             //var ar = Qsort.GetArray(8);
-            var ar = GetArray(100);
+            int nn = 58;
+            var ar = GetArray(nn);
+            Console.WriteLine(nn);
             int[] newAr = (int[])ar.Clone();
 
 
