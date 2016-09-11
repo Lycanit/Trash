@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dijcstra\Dijcstra.cs" />
+    <Compile Include="Dijcstra\Edge.cs" />
+    <Compile Include="Dijcstra\Node.cs" />
+    <Compile Include="Dijcstra\Test.cs" />
     <Compile Include="MergeSort.cs" />
     <Compile Include="Funning\Qsort.cs" />
     <Compile Include="Funning\SetProcessor.cs" />
