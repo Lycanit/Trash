@@ -19,6 +19,7 @@ namespace ConsoleApplication
             Dijcstra.Dijcstra.DoMagic();
 
             Console.ReadKey();
+            ////////////////////////////////
         }
 
     }
