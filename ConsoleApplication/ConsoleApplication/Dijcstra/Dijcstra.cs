@@ -18,12 +18,16 @@ namespace ConsoleApplication.Dijcstra
 
             n1.AddNode(n2, 20);
             n1.AddNode(n3, 30);
-            n1.AddNode(n4, 40);
+            n1.AddNode(n4, 33);
             n1.AddNode(n5, 50);
 
-            n3.AddNode(n4, 25);
-            n3.AddNode(n5, 15);
+            n2.AddNode(n3, 5);
+            n2.AddNode(n4, 5);
 
+            n3.AddNode(n4, 25);
+            n3.AddNode(n5, 1);
+
+            n4.AddNode(n3, 2);
             n5.AddNode(n1, 25);
             n5.AddNode(n4, 25);
 
@@ -36,6 +40,9 @@ namespace ConsoleApplication.Dijcstra
         {
             Node n1 = Generate();
             print(n1);
+            Console.WriteLine("============");
+            int wtf = ResolveSimple(n1, 5);
+            Console.WriteLine(wtf);
         }
 
 
@@ -68,9 +75,46 @@ namespace ConsoleApplication.Dijcstra
             }
         }
 
-        public static void ResolveSimple(Node start, Node end)
+        public static int ResolveSimple(Node start, int end)
         {
-            
+            var ret = int.MaxValue;
+            Dictionary<int, int> path = new Dictionary<int, int>();
+            HashSet<int> hash = new HashSet<int>();
+            List<Node> list = new List<Node>();
+            list.Add(start);
+            while (list.Count > 0)
+            {
+                Node current = list[0];
+                list.RemoveAt(0);
+                for (int i = 0; i < current.List.Count; i++)
+                {
+                    var childEdge = current.List[i];
+                    if (!path.ContainsKey(childEdge.Node.Data))
+                    {
+                        int additional = 0;
+                        if (path.ContainsKey(current.Data))
+                        {
+                            additional = path[current.Data];
+                        }
+                        path[childEdge.Node.Data] = childEdge.Weight + additional;
+                        list.Add(childEdge.Node);
+                        continue;
+                    }
+                    int outRange = childEdge.Weight;
+                    int inRange = path[current.Data];
+                    int wtf = path[childEdge.Node.Data];
+                    if (wtf > inRange + outRange)
+                    {
+                        path[childEdge.Node.Data] = inRange + outRange;
+                        list.Add(childEdge.Node);
+                    }
+                }
+            }
+            if (path.ContainsKey(end))
+            {
+                ret = path[end];
+            }
+            return ret;
 
         }
 

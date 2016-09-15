@@ -48,6 +48,7 @@
     <Compile Include="Dijcstra\Edge.cs" />
     <Compile Include="Dijcstra\Node.cs" />
     <Compile Include="Dijcstra\PrintNode.cs" />
+    <Compile Include="Dijcstra\SomeClass.cs" />
     <Compile Include="Dijcstra\Test.cs" />
     <Compile Include="MergeSort.cs" />
     <Compile Include="Funning\Qsort.cs" />
