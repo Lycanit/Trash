@@ -72,16 +72,6 @@ namespace ConsoleApplication.Dijcstra
             }
         }
 
-        public static string GetShift(int shift)
-        {
-            string ret = "";
-            for(int i = 0; i < shift * _shift; i++)
-            {
-                ret += " ";
-            }
-            return ret;
-        }
-
         public static void ResolveSimple(Node start, Node end)
         {
             
