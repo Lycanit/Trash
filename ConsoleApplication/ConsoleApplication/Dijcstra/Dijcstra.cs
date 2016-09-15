@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ConsoleApplication.Dijcstra
 {
     class Dijcstra
     {
 
-        private static int _shift = 2;
-
-        public static Node generate()
+        public static Node Generate()
         {
 
             Node n1 = new Node(1);
@@ -38,7 +34,7 @@ namespace ConsoleApplication.Dijcstra
 
         public static void DoMagic()
         {
-            Node n1 = generate();
+            Node n1 = Generate();
             print(n1);
         }
 
@@ -61,12 +57,12 @@ namespace ConsoleApplication.Dijcstra
                 Console.WriteLine($"{current.Data}:");
                 for(int i = 0; i < current.List.Count; i++)
                 {
-                    var child = current.List[i].Node;
-                    Console.WriteLine($"    {child.Data}");
+                    var childEdge = current.List[i];
+                    Console.WriteLine($"    {childEdge.Node.Data} : {childEdge.Weight}");
                     
                     
                     //list.Insert(0, child);
-                    list.Add(child);
+                    list.Add(childEdge.Node);
                 }
                 Console.WriteLine();
             }
