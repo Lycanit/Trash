@@ -8,18 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using ConsoleApplication.Dijcstra;
 
+
 namespace ConsoleApplication
 {
+
     class Program
     {
+        
         static void Main(string[] args)
         {
-//-----------------------------
 
             Dijcstra.Dijcstra.DoMagic();
 
             Console.ReadKey();
-            ////////////////////////////////
+            
         }
 
     }

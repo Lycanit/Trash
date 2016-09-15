@@ -28,7 +28,9 @@ namespace ConsoleApplication.Dijcstra
             n3.AddNode(n4, 25);
             n3.AddNode(n5, 15);
 
+            n5.AddNode(n1, 25);
             n5.AddNode(n4, 25);
+
            
 
             return n1;
@@ -43,47 +45,30 @@ namespace ConsoleApplication.Dijcstra
 
         public static void print(Node node)
         {
-            Dictionary<int, List<int>> dic = new Dictionary<int, List<int>>();
-            List<PrintNode> list = new List<PrintNode>();
-            PrintNode _pn = new PrintNode()
-            {
-                Shift = 0,
-                FromNode = 0,
-                Node = node,
-            };
-            list.Add(_pn);
+            HashSet<int> hash = new HashSet<int>();
+            List<Node> list = new List<Node>();
+            list.Add(node);
             while (list.Count > 0)
             {
-                PrintNode pn = list[0];
-                var shiftStr = GetShift(pn.Shift);
-                Console.WriteLine($"{shiftStr}{pn.FromNode} -> {pn.Node.Data}");
-
+                Node current = list[0];
                 list.RemoveAt(0);
-                for(int i = 0; i < pn.Node.List.Count; i++)
+                if (hash.Contains(current.Data))
                 {
-                    if (dic.ContainsKey(pn.Node.Data))
-                    {
-                        if (dic[pn.Node.Data].Contains(pn.Node.List[i].Node.Data))
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            dic[pn.Node.Data].Add(pn.Node.List[i].Node.Data);
-                        }
-                    }
-                    else
-                    {
-                        dic[pn.Node.Data] = new List<int>() { pn.Node.List[i].Node.Data };
-                    }
-                    PrintNode childPN = new PrintNode()
-                    {
-                        FromNode = pn.Node.Data,
-                        Shift = pn.Shift + 1,
-                        Node = pn.Node.List[i].Node,
-                    };
-                    list.Insert(0, childPN);
+                    continue;
                 }
+                hash.Add(current.Data);
+
+                Console.WriteLine($"{current.Data}:");
+                for(int i = 0; i < current.List.Count; i++)
+                {
+                    var child = current.List[i].Node;
+                    Console.WriteLine($"    {child.Data}");
+                    
+                    
+                    //list.Insert(0, child);
+                    list.Add(child);
+                }
+                Console.WriteLine();
             }
         }
 
